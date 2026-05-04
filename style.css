@@ -1,0 +1,440 @@
+/* Configurações Gerais */
+:root {
+  --primary-color: #ff4d6d;
+  --bg-color: #fff0f3;
+  --text-color: #590d22;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Tela de Entrada */
+#intro-screen {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffb3c1, #ff4d6d);
+  text-align: center;
+  color: white;
+}
+
+#enter-btn {
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 50px;
+  background: white;
+  color: #ff4d6d;
+  cursor: pointer;
+  transition: transform 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#enter-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Galeria Estilo Mural */
+.gallery-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery {
+  column-count: 3; /* Divide em 3 colunas como no Instagram/Pinterest */
+  column-gap: 15px;
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    column-count: 2;
+  }
+}
+
+.card {
+  background: white;
+  margin-bottom: 15px;
+  break-inside: avoid;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card img,
+.card video {
+  width: 100%;
+  display: block;
+  transition: transform 0.5s;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+.text-card {
+  padding: 20px;
+  text-align: center;
+  background: #ffccd5;
+}
+
+/* Flores de Fundo e Pétalas */
+.flowers-bg img {
+  position: fixed;
+  width: 80px;
+  opacity: 0.3;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Posicionando as flores do seu print nos cantos */
+.flowers-bg img:nth-child(1) {
+  top: 5%;
+  left: 5%;
+}
+.flowers-bg img:nth-child(2) {
+  top: 10%;
+  right: 5%;
+}
+.flowers-bg img:nth-child(3) {
+  bottom: 5%;
+  left: 10%;
+}
+.flowers-bg img:nth-child(4) {
+  bottom: 10%;
+  right: 10%;
+}
+
+.petal {
+  position: fixed;
+  top: -10%;
+  pointer-events: none;
+  z-index: 999;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+/* Seções de Texto */
+.intro-section,
+.final-section {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+/* Espaçamento entre capítulos */
+.chapter-header {
+  text-align: center;
+  padding: 100px 20px 40px;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 1s ease-out;
+}
+
+.chapter-header.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.chapter-header .date {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.9rem;
+  color: #ff4d6d;
+  font-weight: bold;
+}
+
+.chapter-header h1 {
+  font-size: 2.5rem;
+  margin: 10px 0;
+  font-family: "Georgia", serif;
+}
+
+/* Card em destaque para a foto da gravidez */
+.card.text-card.highlight {
+  background: linear-gradient(135deg, #ffccd5, #ffb3c1);
+  border: 2px solid #ff4d6d;
+}
+
+.final-box {
+  background: white;
+  padding: 50px;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(255, 77, 109, 0.2);
+  max-width: 600px;
+  margin: 0 20px;
+}
+
+.heart {
+  font-size: 3rem;
+  display: inline-block;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Deixar o scroll suave para ela não descer rápido demais */
+html {
+  scroll-behavior: smooth;
+}
+
+.card {
+  transition: transform 0.2s ease-out;
+}
+
+/* Quando ela passar o mouse ou o scroll atingir a foto, ela "salta" */
+.card:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.02);
+}
+
+.flowers-bg {
+  filter: blur(4px); /* Suaviza as flores do fundo */
+  opacity: 0.4;
+}
+
+/* Efeito de brilho nas fotos */
+.card img {
+  filter: saturate(1.1) contrast(1.05);
+}
+
+.immersive-gallery {
+  position: relative;
+  height: 150vh; /* Seção bem longa para o efeito durar */
+  overflow: hidden;
+  background: #fffafa;
+}
+
+.floating-photos {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.float-card {
+  position: absolute;
+  width: 250px;
+  transition: transform 0.1s linear; /* Suaviza o movimento do JS */
+}
+
+/* Espalhando manualmente como no print do Lando Norris */
+.float-card:nth-child(1) {
+  top: 10%;
+  left: 10%;
+  width: 200px;
+}
+.float-card:nth-child(2) {
+  top: 20%;
+  right: 15%;
+  width: 300px;
+}
+.float-card:nth-child(3) {
+  top: 40%;
+  left: 35%;
+  width: 450px;
+  z-index: 2;
+} /* Foto principal */
+.float-card:nth-child(4) {
+  top: 70%;
+  left: 15%;
+  width: 220px;
+}
+
+.float-card img {
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.float-card span,
+.float-card p {
+  font-family: "serif";
+  font-size: 0.8rem;
+  color: #333;
+  display: block;
+  margin-top: 10px;
+}
+
+/* Seção 4: Mural de Detalhes */
+.details-mural {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 20px;
+}
+
+.mural-item {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  filter: grayscale(100%);
+  transition: all 0.5s ease;
+}
+
+.mural-item:hover {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+  z-index: 5;
+}
+
+/* Seção 5: Linha do Tempo */
+.timeline-section {
+  padding: 100px 20px;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 100px;
+}
+
+.timeline-item.reversed {
+  flex-direction: row-reverse;
+}
+
+.timeline-img {
+  width: 40%;
+}
+.timeline-img img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.timeline-text {
+  width: 40%;
+}
+.timeline-text span {
+  color: #ff4d6d;
+  font-weight: bold;
+}
+
+/* Seção 6: Grande Momento (Efeito Cinema) */
+.big-moment {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.parallax-bg-container {
+  width: 100%;
+  height: 120%; /* Maior que a tela para o efeito de scroll */
+  position: absolute;
+  top: -10%;
+}
+
+.parallax-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+
+.overlay-text {
+  position: relative;
+  color: white;
+  text-align: center;
+  z-index: 10;
+}
+
+/* Responsivo para Celular */
+@media (max-width: 768px) {
+  .details-mural {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .timeline-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  .timeline-img,
+  .timeline-text {
+    width: 100%;
+  }
+}
+
+/* Estado base de todas as fotos antes de aparecerem */
+.card {
+  opacity: 0;
+  transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); /* Animação suave e elegante */
+  will-change: transform, opacity;
+}
+
+/* 1. Foto vem da Esquerda */
+.reveal-left {
+  transform: translateX(-100px) rotate(-5deg);
+}
+
+/* 2. Foto vem da Direita */
+.reveal-right {
+  transform: translateX(100px) rotate(5deg);
+}
+
+/* 3. Foto vem de Baixo (Sobe) */
+.reveal-bottom {
+  transform: translateY(80px);
+}
+
+/* 4. Foto surge com Zoom (Efeito de Profundidade) */
+.reveal-zoom {
+  transform: scale(0.5);
+}
+
+/* Classe que o JavaScript vai adicionar quando a foto aparecer na tela */
+.card.active {
+  opacity: 1 !important;
+  transform: translate(0) rotate(0) scale(1) !important;
+}
