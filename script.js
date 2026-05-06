@@ -60,31 +60,40 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 400); // Cria uma flor a cada 400ms
     }
 
-    // 4. Animação ao rolar (Scroll Reveal)
-    const observer = new IntersectionObserver((entries) => {
+    // 4. Animação ao rolar (Scroll Reveal Otimizado)
+    const observerOptions = {
+        threshold: 0.05, // Ativa assim que 5% da imagem aparecer (melhor para celular)
+        rootMargin: "0px 0px -50px 0px" // Dispara um pouco antes de entrar na tela
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                // Adiciona AMBAS as classes para garantir compatibilidade com seu CSS antigo e novo
                 entry.target.classList.add("show");
+                entry.target.classList.add("active");
+                
+                // Opcional: para de observar após animar para economizar bateria do celular
+                revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, observerOptions);
 
-    document.querySelectorAll(".card").forEach(card => {
-        observer.observe(card);
+    // Observar Cards, Cabeçalhos de capítulos e itens do mural
+    const elementsToAnimate = document.querySelectorAll(".card, .chapter-header, .mural-item, .final-box");
+    elementsToAnimate.forEach(el => {
+        revealObserver.observe(el);
     });
+
+    // 5. Efeito Parallax Cinema (Otimizado para não travar)
+    window.addEventListener('scroll', () => {
+        const parallaxImg = document.querySelector('.parallax-img');
+        if (parallaxImg && !mainContent.classList.contains('hidden')) {
+            let scrollPosition = window.pageYOffset;
+            // Move a imagem bem devagar (0.1) para não pesar no processador do celular
+            parallaxImg.style.transform = `translateY(${scrollPosition * 0.1}px)`;
+        }
+    }, { passive: true }); // O 'passive: true' melhora absurdamente a rolagem no mobile
+});
 
     
-
-    // Adicione isso dentro do DOMContentLoaded no script anterior
-const chapterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-        }
-    });
-}, { threshold: 0.3 });
-
-document.querySelectorAll(".chapter-header").forEach(header => {
-    chapterObserver.observe(header);
-});
-});

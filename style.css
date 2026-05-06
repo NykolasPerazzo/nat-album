@@ -5,14 +5,14 @@
   --text-color: #590d22;
 }
 
-body,
-html {
+html,
+body {
   margin: 0;
   padding: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  width: 100%;
+  /* Evita que o site balance para os lados e garante rolagem suave */
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; /* Melhora o scroll no iPhone */
 }
 
 .hidden {
@@ -74,6 +74,8 @@ html {
   opacity: 0;
   transform: translateY(50px);
   transition: all 0.8s ease-out;
+  will-change: transform, opacity; /* Ajuda o celular a processar a animação */
+  backface-visibility: hidden;
 }
 
 .card.show {
@@ -96,6 +98,11 @@ html {
   padding: 20px;
   text-align: center;
   background: #ffccd5;
+}
+
+.flowers-bg {
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* Flores de Fundo e Pétalas */
@@ -128,7 +135,9 @@ html {
 .petal {
   position: fixed;
   top: -10%;
+  /* pointer-events: none impede que a pétala bloqueie o dedo no celular */
   pointer-events: none;
+  user-select: none;
   z-index: 999;
   animation: fall linear forwards;
 }
