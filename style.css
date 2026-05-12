@@ -336,6 +336,33 @@ html {
   z-index: 5;
 }
 
+.detalhe-flor {
+  position: absolute;
+  width: 266%;
+  top: -20px;
+  right: -25%;
+}
+
+.detalhe-alianca {
+  position: absolute;
+  width: 179%;
+  top: -170px;
+  left: -29%;
+}
+
+.detalhe-chale {
+  position: absolute;
+  width: 297%;
+  top: -266px;
+  left: -77%;
+}
+
+.com-simba {
+  position: absolute;
+  width: 447%;
+  top: -554%;
+  left: -144%;
+}
 /* Seção 5: Linha do Tempo */
 .timeline-section {
   padding: 100px 20px;
