@@ -94,6 +94,160 @@ document.addEventListener("DOMContentLoaded", () => {
             parallaxImg.style.transform = `translateY(${scrollPosition * 0.1}px)`;
         }
     }, { passive: true }); // O 'passive: true' melhora absurdamente a rolagem no mobile
+
+    // CORAÇÕES AO TOQUE
+document.addEventListener("click", (e) => {
+
+    const heart = document.createElement("div");
+
+    heart.innerHTML = "❤️";
+
+    heart.classList.add("touch-heart");
+
+    heart.style.left = e.clientX + "px";
+
+    heart.style.top = e.clientY + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 2000);
+
+});
+
+// PARTÍCULAS
+function createSparkles(){
+
+    setInterval(()=>{
+
+        const sparkle = document.createElement("span");
+
+        sparkle.classList.add("sparkle");
+
+        sparkle.style.left = Math.random()*100 + "vw";
+
+        sparkle.style.animationDuration =
+        Math.random()*5 + 4 + "s";
+
+        document.querySelector(".sparkles")
+        .appendChild(sparkle);
+
+        setTimeout(()=>{
+            sparkle.remove();
+        },9000);
+
+    },300);
+
+}
+
+createSparkles();
+
+// EFEITO 3D NAS FOTOS
+document.querySelectorAll(".card").forEach(card=>{
+
+    card.addEventListener("mousemove",(e)=>{
+
+        const rect = card.getBoundingClientRect();
+
+        const x = e.clientX - rect.left;
+
+        const y = e.clientY - rect.top;
+
+        const rotateY =
+        (x - rect.width/2)/20;
+
+        const rotateX =
+        -(y - rect.height/2)/20;
+
+        card.style.transform =
+        `perspective(1000px)
+        rotateX(${rotateX}deg)
+        rotateY(${rotateY}deg)
+        scale(1.03)`;
+
+    });
+
+    card.addEventListener("mouseleave",()=>{
+
+        card.style.transform = "";
+
+    });
+
+});
+// EFEITO MÁQUINA DE ESCREVER
+const title =
+document.querySelector(".typing-title");
+
+const text = title.innerText;
+
+title.innerText = "";
+
+let i = 0;
+
+function typeWriter(){
+
+    if(i < text.length){
+
+        title.innerHTML += text.charAt(i);
+
+        i++;
+
+        setTimeout(typeWriter,50);
+
+    }
+
+}
+
+typeWriter();
+
+enterBtn.addEventListener("click",()=>{
+
+    if(navigator.vibrate){
+
+        navigator.vibrate(100);
+
+    }
+
+});
+
+window.addEventListener("scroll",()=>{
+
+    document.body.style.backgroundPositionY =
+    window.scrollY * .1 + "px";
+
+},{passive:true});
+
+musicBtn.classList.add("playing");
+musicBtn.classList.remove("playing");
+
+const scenes = document.querySelectorAll(".scene");
+
+window.addEventListener("scroll",()=>{
+
+    const scroll = window.scrollY;
+
+    scenes.forEach((scene,index)=>{
+
+        const start = index * window.innerHeight;
+
+        const end = start + window.innerHeight;
+
+        if(scroll >= start && scroll < end){
+
+            scene.classList.add("fade-in");
+
+        }else{
+
+            scene.classList.remove("fade-in");
+
+            scene.classList.add("fade-out");
+
+        }
+
+    });
+
+});
 });
 
     

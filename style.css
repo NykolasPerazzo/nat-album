@@ -1,3 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #080205;
+  color: white;
+  overflow-x: hidden;
+}
+
 /* Configurações Gerais */
 :root {
   --primary-color: #ff4d6d;
@@ -15,6 +28,50 @@ body {
   -webkit-overflow-scrolling: touch; /* Melhora o scroll no iPhone */
 }
 
+body::before {
+  content: "";
+
+  position: fixed;
+
+  inset: 0;
+
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.85)),
+    url("./img/background-rosa.png");
+
+  background-size: cover;
+
+  background-position: center;
+
+  z-index: -3;
+}
+
+body::after {
+  content: "";
+
+  position: fixed;
+
+  width: 500px;
+
+  height: 500px;
+
+  border-radius: 50%;
+
+  left: 50%;
+
+  top: 40%;
+
+  background: #ff4f84;
+
+  filter: blur(200px);
+
+  opacity: 0.2;
+
+  transform: translate(-50%, -50%);
+
+  z-index: -2;
+}
+
 .hidden {
   display: none !important;
 }
@@ -25,15 +82,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #ffb3c1, #ff4d6d, #fbb8f6);
+  background: linear-gradient(135deg, #ffb3c1, #ff4d6d);
   text-align: center;
   color: white;
-}
-
-.introscreen-div h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  font-family: "Georgia", serif;
 }
 
 #enter-btn {
@@ -52,22 +103,65 @@ body {
   transform: scale(1.1);
 }
 
-.moldura-top {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 45%;
-  height: auto;
-  opacity: 0.8;
+.hero {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 0 25px;
 }
 
-.moldura-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 50%;
-  height: auto;
-  opacity: 0.8;
+.hero h1 {
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 4rem;
+
+  line-height: 1;
+
+  font-weight: 400;
+
+  margin-bottom: 30px;
+
+  text-shadow:
+    0 0 20px rgba(255, 255, 255, 0.4),
+    0 0 50px rgba(255, 90, 140, 0.3);
+}
+
+.hero span {
+  color: #ff8cab;
+}
+
+.hero p {
+  max-width: 500px;
+
+  line-height: 1.8;
+
+  color: rgba(255, 255, 255, 0.8);
+
+  margin-bottom: 40px;
+}
+
+.hero-button {
+  width: 280px;
+  height: 65px;
+
+  border: none;
+
+  border-radius: 50px;
+
+  color: white;
+
+  font-size: 1rem;
+
+  background: linear-gradient(90deg, #ff4f84, #ff7ca6);
+
+  box-shadow: 0 0 30px #ff4f84;
 }
 
 /* Galeria Estilo Mural */
@@ -116,6 +210,22 @@ body {
 
 .card:hover img {
   transform: scale(1.05);
+}
+
+.reveal-left {
+  transform: translateX(-80px);
+}
+
+.reveal-right {
+  transform: translateX(80px);
+}
+
+.reveal-bottom {
+  transform: translateY(80px);
+}
+
+.reveal-zoom {
+  transform: scale(0.6);
 }
 
 .text-card {
@@ -199,11 +309,19 @@ body {
 
 /* Espaçamento entre capítulos */
 .chapter-header {
+  margin: 90px 20px 40px;
+
+  padding: 45px 30px;
+
   text-align: center;
-  padding: 100px 20px 40px;
-  opacity: 0;
-  transform: scale(0.9);
-  transition: all 1s ease-out;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  backdrop-filter: blur(20px);
+
+  border-radius: 40px;
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .chapter-header.show {
@@ -220,9 +338,71 @@ body {
 }
 
 .chapter-header h1 {
-  font-size: 2.5rem;
-  margin: 10px 0;
-  font-family: "Georgia", serif;
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 3.5rem;
+
+  margin-top: 10px;
+}
+
+.chapter-header p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.card {
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 30px;
+
+  margin-bottom: 18px;
+
+  background: var(--glass);
+
+  backdrop-filter: blur(15px);
+
+  border: 1px solid var(--border);
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+.card img {
+  width: 100%;
+
+  display: block;
+
+  border-radius: 24px;
+
+  transition: 1s;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+.card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 100px;
+
+  height: 300px;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  transform: rotate(35deg);
+
+  left: -200px;
+
+  top: -50px;
+
+  transition: 1.2s;
+}
+
+.card:hover::before {
+  left: 150%;
 }
 
 /* Card em destaque para a foto da gravidez */
@@ -232,12 +412,17 @@ body {
 }
 
 .final-box {
-  background: white;
-  padding: 50px;
-  border-radius: 30px;
-  box-shadow: 0 10px 30px rgba(255, 77, 109, 0.2);
-  max-width: 600px;
-  margin: 0 20px;
+  background: rgba(255, 255, 255, 0.05);
+
+  backdrop-filter: blur(25px);
+
+  border-radius: 40px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  padding: 60px 35px;
+
+  box-shadow: 0 0 80px rgba(255, 79, 132, 0.25);
 }
 
 .heart {
@@ -377,7 +562,7 @@ html {
 .detalhe-chale {
   position: absolute;
   width: 297%;
-  top: -300px;
+  top: -266px;
   left: -77%;
 }
 
@@ -439,7 +624,7 @@ html {
 
 .parallax-img {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
   filter: brightness(0.6);
 }
@@ -497,4 +682,798 @@ html {
 .card.active {
   opacity: 1 !important;
   transform: translate(0) rotate(0) scale(1) !important;
+}
+
+/* Configurações Gerais */
+:root {
+  --primary-color: #ff4d6d;
+  --bg-color: #fff0f3;
+  --text-color: #590d22;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  /* Evita que o site balance para os lados e garante rolagem suave */
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; /* Melhora o scroll no iPhone */
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Tela de Entrada */
+#intro-screen {
+  height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 30px;
+
+  background: transparent;
+}
+
+.intro-content {
+  width: 100%;
+
+  max-width: 420px;
+
+  padding: 50px 30px;
+
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 40px;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.intro-content h1 {
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 3rem;
+
+  font-weight: 400;
+
+  line-height: 1.1;
+
+  text-shadow:
+    0 0 20px rgba(255, 255, 255, 0.4),
+    0 0 50px rgba(255, 91, 143, 0.4);
+}
+
+#enter-btn {
+  margin-top: 30px;
+
+  width: 100%;
+
+  height: 60px;
+
+  border: none;
+
+  border-radius: 50px;
+
+  color: white;
+
+  font-size: 1rem;
+
+  background: linear-gradient(90deg, #ff4f84, #ff7ca6);
+
+  box-shadow: 0 0 30px #ff4f84;
+}
+
+#enter-btn {
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 50px;
+  background: white;
+  color: #ff4d6d;
+  cursor: pointer;
+  transition: transform 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#enter-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Galeria Estilo Mural */
+.gallery-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery {
+  column-count: 3; /* Divide em 3 colunas como no Instagram/Pinterest */
+  column-gap: 15px;
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    column-count: 2;
+  }
+}
+
+.card {
+  position: relative;
+
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  backdrop-filter: blur(15px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 30px;
+
+  padding: 10px;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.card img {
+  width: 100%;
+
+  border-radius: 22px;
+
+  transition: 1s;
+}
+
+.card::before {
+  content: "";
+
+  position: absolute;
+
+  top: -200px;
+
+  left: -200px;
+
+  width: 100px;
+
+  height: 400px;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  transform: rotate(30deg);
+
+  transition: 1.2s;
+}
+
+.card:hover::before {
+  left: 500px;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card img,
+.card video {
+  width: 100%;
+  display: block;
+  transition: transform 0.5s;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+.text-card {
+  padding: 20px;
+  text-align: center;
+  background: #ffccd5;
+}
+
+.flowers-bg {
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Flores de Fundo e Pétalas */
+.flowers-bg img {
+  position: fixed;
+  width: 80px;
+  opacity: 0.3;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Posicionando as flores do seu print nos cantos */
+.flowers-bg img:nth-child(1) {
+  top: 5%;
+  left: 5%;
+}
+.flowers-bg img:nth-child(2) {
+  top: 10%;
+  right: 5%;
+}
+.flowers-bg img:nth-child(3) {
+  bottom: 5%;
+  left: 10%;
+}
+.flowers-bg img:nth-child(4) {
+  bottom: 10%;
+  right: 10%;
+}
+
+.petal {
+  position: fixed;
+  top: -10%;
+  /* pointer-events: none impede que a pétala bloqueie o dedo no celular */
+  pointer-events: none;
+  user-select: none;
+  z-index: 999;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+/* Seções de Texto */
+.intro-section,
+.final-section {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+/* Espaçamento entre capítulos */
+.chapter-header {
+  margin: 60px 20px 30px;
+
+  padding: 40px 30px;
+
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 35px;
+
+  backdrop-filter: blur(20px);
+}
+
+.chapter-header .date {
+  color: #ff8cab;
+
+  letter-spacing: 4px;
+
+  text-transform: uppercase;
+}
+
+.chapter-header h1 {
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 3rem;
+
+  font-weight: 400;
+
+  margin: 15px 0;
+}
+
+.chapter-header.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.chapter-header .date {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.9rem;
+  color: #ff4d6d;
+  font-weight: bold;
+}
+
+.chapter-header h1 {
+  font-size: 2.5rem;
+  margin: 10px 0;
+  font-family: "Georgia", serif;
+}
+
+/* Card em destaque para a foto da gravidez */
+.card.text-card.highlight {
+  background: linear-gradient(135deg, #ffccd5, #ffb3c1);
+  border: 2px solid #ff4d6d;
+}
+
+.final-box {
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  backdrop-filter: blur(20px);
+
+  border-radius: 40px;
+
+  box-shadow: 0 0 100px rgba(255, 70, 120, 0.3);
+}
+
+.heart {
+  font-size: 3rem;
+  display: inline-block;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Deixar o scroll suave para ela não descer rápido demais */
+html {
+  scroll-behavior: smooth;
+}
+
+.card {
+  transition: transform 0.2s ease-out;
+}
+
+/* Quando ela passar o mouse ou o scroll atingir a foto, ela "salta" */
+.card:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.02);
+}
+
+.flowers-bg {
+  filter: blur(4px); /* Suaviza as flores do fundo */
+  opacity: 0.4;
+}
+
+/* Efeito de brilho nas fotos */
+.card img {
+  filter: saturate(1.1) contrast(1.05);
+}
+
+.immersive-gallery {
+  position: relative;
+  height: 150vh; /* Seção bem longa para o efeito durar */
+  overflow: hidden;
+  background: #fffafa;
+}
+
+.floating-photos {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.float-card {
+  position: absolute;
+  width: 250px;
+  transition: transform 0.1s linear; /* Suaviza o movimento do JS */
+}
+
+/* Espalhando manualmente como no print do Lando Norris */
+.float-card:nth-child(1) {
+  top: 10%;
+  left: 10%;
+  width: 200px;
+}
+.float-card:nth-child(2) {
+  top: 20%;
+  right: 15%;
+  width: 300px;
+}
+.float-card:nth-child(3) {
+  top: 40%;
+  left: 35%;
+  width: 450px;
+  z-index: 2;
+} /* Foto principal */
+.float-card:nth-child(4) {
+  top: 70%;
+  left: 15%;
+  width: 220px;
+}
+
+.float-card img {
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.float-card span,
+.float-card p {
+  font-family: "serif";
+  font-size: 0.8rem;
+  color: #333;
+  display: block;
+  margin-top: 10px;
+}
+
+/* Seção 4: Mural de Detalhes */
+.details-mural {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 20px;
+}
+
+.mural-item {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  filter: grayscale(100%);
+  transition: all 0.5s ease;
+}
+
+.mural-item:hover {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+  z-index: 5;
+}
+
+.detalhe-flor {
+  position: absolute;
+  width: 266%;
+  top: -20px;
+  right: -25%;
+}
+
+.detalhe-alianca {
+  position: absolute;
+  width: 179%;
+  top: -170px;
+  left: -29%;
+}
+
+.detalhe-chale {
+  position: absolute;
+  width: 297%;
+  top: -266px;
+  left: -77%;
+}
+
+.com-simba {
+  position: absolute;
+  width: 447%;
+  top: -554%;
+  left: -144%;
+}
+/* Seção 5: Linha do Tempo */
+.timeline-section {
+  padding: 100px 20px;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 100px;
+}
+
+.timeline-item.reversed {
+  flex-direction: row-reverse;
+}
+
+.timeline-img {
+  width: 40%;
+}
+.timeline-img img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.timeline-text {
+  width: 40%;
+}
+.timeline-text span {
+  color: #ff4d6d;
+  font-weight: bold;
+}
+
+/* Seção 6: Grande Momento (Efeito Cinema) */
+.big-moment {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.parallax-bg-container {
+  width: 100%;
+  height: 120%; /* Maior que a tela para o efeito de scroll */
+  position: absolute;
+  top: -10%;
+}
+
+.parallax-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+
+.overlay-text {
+  position: relative;
+  color: white;
+  text-align: center;
+  z-index: 10;
+}
+
+/* Responsivo para Celular */
+@media (max-width: 768px) {
+  .details-mural {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .timeline-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  .timeline-img,
+  .timeline-text {
+    width: 100%;
+  }
+}
+
+/* Estado base de todas as fotos antes de aparecerem */
+.card {
+  opacity: 0;
+  transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); /* Animação suave e elegante */
+  will-change: transform, opacity;
+}
+
+/* 1. Foto vem da Esquerda */
+.reveal-left {
+  transform: translateX(-100px) rotate(-5deg);
+}
+
+/* 2. Foto vem da Direita */
+.reveal-right {
+  transform: translateX(100px) rotate(5deg);
+}
+
+/* 3. Foto vem de Baixo (Sobe) */
+.reveal-bottom {
+  transform: translateY(80px);
+}
+
+/* 4. Foto surge com Zoom (Efeito de Profundidade) */
+.reveal-zoom {
+  transform: scale(0.5);
+}
+
+/* Classe que o JavaScript vai adicionar quando a foto aparecer na tela */
+.card.active {
+  opacity: 1 !important;
+  transform: translate(0) rotate(0) scale(1) !important;
+}
+
+.touch-heart {
+  position: fixed;
+
+  font-size: 25px;
+
+  pointer-events: none;
+
+  z-index: 9999;
+
+  animation: heartUp 2s forwards;
+}
+
+@keyframes heartUp {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -200px) scale(2);
+  }
+}
+
+.sparkle {
+  position: fixed;
+
+  top: 100vh;
+
+  width: 3px;
+
+  height: 3px;
+
+  background: white;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 10px white,
+    0 0 20px white;
+
+  animation: sparkleFloat linear forwards;
+}
+
+@keyframes sparkleFloat {
+  to {
+    top: -10vh;
+
+    opacity: 0;
+  }
+}
+
+#music-btn {
+  position: fixed;
+
+  bottom: 25px;
+  right: 25px;
+
+  width: 65px;
+  height: 65px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.4rem;
+
+  color: white;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  z-index: 9999;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(255, 79, 132, 0.4);
+
+  transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+#music-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.5),
+    0 0 50px rgba(255, 79, 132, 0.8);
+}
+
+#music-btn:active {
+  transform: scale(0.92);
+}
+
+#music-btn::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -5px;
+
+  border-radius: 50%;
+
+  border: 2px solid rgba(255, 79, 132, 0.3);
+}
+
+@keyframes pulseMusic {
+  0% {
+    transform: scale(1);
+
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.5);
+
+    opacity: 0;
+  }
+}
+
+#music-btn.playing {
+  animation: rotateDisc 8s linear infinite;
+}
+
+@keyframes rotateDisc {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cinema-scroll {
+  position: relative;
+
+  height: 300vh;
+}
+
+.scene {
+  position: sticky;
+
+  top: 0;
+
+  height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.scene img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    opacity 0.8s,
+    filter 0.8s,
+    transform 0.8s;
+}
+
+.scene.fade-out img {
+  opacity: 0;
+
+  filter: blur(25px);
+
+  transform: scale(1.2);
+}
+
+.scene.fade-in img {
+  opacity: 1;
+
+  filter: blur(0);
+
+  transform: scale(1);
 }
