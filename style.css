@@ -172,13 +172,13 @@ body::after {
 }
 
 .gallery {
-  column-count: 3; /* Divide em 3 colunas como no Instagram/Pinterest */
+  column-count: 2; /* Divide em 3 colunas como no Instagram/Pinterest */
   column-gap: 15px;
 }
 
 @media (max-width: 768px) {
   .gallery {
-    column-count: 2;
+    column-count: 1;
   }
 }
 
