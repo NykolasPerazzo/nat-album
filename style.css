@@ -172,7 +172,7 @@ body::after {
 }
 
 .gallery {
-  column-count: 2; /* Divide em 3 colunas como no Instagram/Pinterest */
+  column-count: 3; /* Divide em 3 colunas como no Instagram/Pinterest */
   column-gap: 15px;
 }
 
